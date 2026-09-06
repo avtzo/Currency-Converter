@@ -1,8 +1,22 @@
-const convertFrom = document.getElementById("currency-from");
-const convertTo = document.getElementById("currency-to");
+const openCurrencySelectFromBtn = document.getElementById("openCurrencyFromBtn");
+const openCurrencySelectToBtn = document.getElementById("openCurrencyToBtn");
+
+const openCurrencySelectFromImg = document.getElementById("openCurrencyFromBtnImg");
+const openCurrencySelectToImg = document.getElementById("openCurrencyToBtnImg");
+
+const currencyFromBtns = document.querySelectorAll(".currencyFromBtn");
+const currencyToBtns = document.querySelectorAll(".currencyToBtn");
+
+const currencyFromContainer = document.querySelector(".currencyFromBtns");
+const currencyToContainer = document.querySelector(".currencyToBtns");
+
+
 const amount = document.getElementById("amount-to-convert");
 const convertBtn = document.getElementById("convert-btn");
 const resultScreen = document.getElementById("result");
+
+let selectedCurrencyFrom = "eur";
+let selectedCurrencyTo = "eur";
 
 function convert(currency1, currency2, amount) {
     const rates = {
@@ -23,15 +37,42 @@ function convert(currency1, currency2, amount) {
 
 }
 
+currencyFromBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        selectedCurrencyFrom = btn.textContent.toLowerCase();
+        openCurrencySelectFromBtn.lastChild.textContent = btn.textContent;
+        currencyFromContainer.classList.add("hidden");
+        openCurrencySelectFromImg.src = `images/${btn.textContent.trim().toLowerCase()}.svg`;        
+    });
+});
+
+currencyToBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        selectedCurrencyTo = btn.textContent.toLowerCase();
+        openCurrencySelectToBtn.lastChild.textContent = btn.textContent;
+        currencyToContainer.classList.add("hidden");
+        openCurrencySelectToImg.src = `images/${btn.textContent.trim().toLowerCase()}.svg`;
+    });
+});
+
+openCurrencySelectFromBtn.addEventListener("click", () => {
+    currencyFromContainer.classList.remove("hidden");
+});
+
+openCurrencySelectToBtn.addEventListener("click", () => {
+    currencyToContainer.classList.remove("hidden");
+});
+
+
 convertBtn.addEventListener("click", () => {
     if (amount.value === "") {
         alert("Please Add an Amount");
         return;
     }
-    if (convertFrom.value === convertTo.value) {
+    if (selectedCurrencyFrom === selectedCurrencyTo) {
         alert("You can't convert to the same currency");
         return;
     }
-    const converted = convert(convertFrom.value, convertTo.value, amount.value);
-    resultScreen.textContent = `${converted} ${convertTo.value.toUpperCase()}`;
+    const converted = convert(selectedCurrencyFrom, selectedCurrencyTo, amount.value);
+    resultScreen.textContent = `${converted} ${selectedCurrencyTo.toUpperCase()}`;
 });

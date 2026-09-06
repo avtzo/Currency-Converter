@@ -10,31 +10,101 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: bisque;
+    background-color: whitesmoke;
 }
 
 html {
     font-family: Arial, sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 .wrapper {
     display: flex;
     gap: 20px;
+    width: 400px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: cadetblue;
+    background-color: azure;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 5px 2px 10px 1px black;
 }
 
-select {
-    background-color: orange;
-    color: white;
-    font-size: 2rem;
-    border-radius: 5px;
-    margin: 0 10px;
+.currencyChoiceBtns {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.currencyChoiceBtns > button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 3px solid dodgerblue;
+    border-radius: 20px;
+    background-color: white;
+    transition: 0.2s;
+}
+
+.currencyChoiceBtns > button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.currencyChoiceBtns > button > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.currencyBtnsLayout {
+    display: grid;
+    grid-template-columns: repeat(5, 2fr);
+    justify-content: center;
+    padding: 20px;
+    background-color: gainsboro;
+    border-radius: 20px;
+    box-shadow: 3px 0 20px 1px black;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.currencyBtnsLayout > button {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(237, 237, 237);
+    margin: 5px;
+    padding: 3px;
+    border: 3px solid dodgerblue;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+.currencyBtnsLayout > button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.currencyBtnsLayout > button > img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .amount {
@@ -51,13 +121,17 @@ select {
 .amount input {
     background-color: inherit;
     border: none;
-    border-bottom: 3px solid orange;
+    border-bottom: 3px solid dodgerblue;
     font-size: 1.2rem;
     padding-left: 10px;
 }
 
+.amount input:focus {
+    outline: none;
+}
+
 .amount input::placeholder {
-    color: white;
+    color: black;
 }
 
 #convert-btn {
@@ -65,9 +139,36 @@ select {
     position: relative;
     top: 10px;
     background-color: inherit;
-    color: orange;
-    border: 3px solid orange;
+    color: dodgerblue;
+    border: 3px solid dodgerblue;
     padding: 5px;
     font-weight: 600;
     border-radius: 20px;
+    transition: 0.2s;
+}
+
+#convert-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        width: 300px;
+    }
+    .currencyChoiceBtns > button > img {
+        width: 30px;
+        height: 30px;
+    }
+    .currencyBtnsLayout {
+        width: 320px;
+    }
+    .currencyBtnsLayout > button {
+        font-size: 0.5rem;
+        font-weight: 800;
+    }
+    .currencyBtnsLayout > button > img {
+        width: 20px;
+        height: 20px;
+    }
 }
