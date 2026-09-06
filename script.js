@@ -55,14 +55,24 @@ currencyToBtns.forEach((btn) => {
     });
 });
 
-openCurrencySelectFromBtn.addEventListener("click", () => {
+openCurrencySelectFromBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     currencyFromContainer.classList.remove("hidden");
 });
 
-openCurrencySelectToBtn.addEventListener("click", () => {
+openCurrencySelectToBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
     currencyToContainer.classList.remove("hidden");
 });
 
+document.addEventListener("click", (e) => {
+    if (!(currencyFromContainer.classList.contains("hidden")) && !currencyFromContainer.contains(e.target)) {
+        currencyFromContainer.classList.add("hidden");
+    }
+    if (!(currencyToContainer.classList.contains("hidden")) && !currencyToContainer.contains(e.target)) {
+        currencyToContainer.classList.add("hidden");
+    }
+});
 
 convertBtn.addEventListener("click", () => {
     if (amount.value === "") {
