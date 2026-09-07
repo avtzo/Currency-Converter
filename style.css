@@ -59,6 +59,11 @@ html {
     transform: scale(1.1);
 }
 
+.currencyChoiceBtns > button:focus {
+    transform: scale(1.1);
+    outline: none;
+}
+
 .currencyChoiceBtns > button > img {
     width: 50px;
     height: 50px;
@@ -101,6 +106,11 @@ html {
 
 .currencyBtnsLayout > button:active {
     transform: scale(0.9);
+}
+
+.currencyBtnsLayout > button:focus {
+    transform: scale(1.2        );
+    outline: none       ;
 }
 
 .currencyBtnsLayout > button > img {
@@ -160,6 +170,12 @@ html {
 #convert-btn:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+#convert-btn:focus {
+    transform: scale(1.1);
+    outline: none;
+    box-shadow: 0 2px 5px black;
 }
 
 #convert-btn:active {
